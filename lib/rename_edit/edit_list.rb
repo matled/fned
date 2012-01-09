@@ -187,12 +187,3 @@ module RenameEdit
     end
   end
 end
-
-if $0 == __FILE__
-  @edit_list = RenameEdit::EditList.new
-  @edit_list.items = ARGV
-  @edit_list.comments = ARGV.map { |s| "value: #{s}" }
-  @edit_list.comments[0] = ["__START__", @edit_list.comments[0]]
-  @edit_list.comments[ARGV.length] = "__END__"
-  p @edit_list.edit
-end
