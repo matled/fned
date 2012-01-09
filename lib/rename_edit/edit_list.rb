@@ -164,7 +164,7 @@ module RenameEdit
       # Ensure all strings are in binary encoding as filenames may have
       # invalid encodings.
       items = items.map { |item| bin_dup(item) }
-      comments = comments.map { |comment| bin_dup(comment) }
+      comments = comments.map { |comment| bin_dup(comment) if comment }
 
       Tempfile.open(File.basename($0), :encoding => "binary") do |fh|
         write_file(fh, items, comments)
