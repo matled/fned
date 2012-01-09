@@ -1,6 +1,7 @@
 require 'pathname'
 require 'rename_edit/edit_list'
 require 'rename_edit/rename'
+require 'rename_edit/version'
 
 module RenameEdit
   class RenameEdit
@@ -17,6 +18,8 @@ module RenameEdit
       options = {}
 
       option_parser = OptionParser.new do |parser|
+        parser.version = VERSION
+
         parser.banner = "Usage: #{File.basename($0)} [options] <files..>"
 
         parser.on("-v", "--verbose", "verbose output") do |v|
