@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'rename_edit'
+exit RenameEdit.main(*ARGV)
