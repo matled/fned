@@ -84,8 +84,7 @@ module RenameEdit
 
     # write comment to io
     def write_comment(io, comments)
-      comments = [comments] unless comments.respond_to?(:each)
-      comments.each do |s|
+      comments.lines.map(&:chomp).each do |s|
         io.puts "# #{escape(s.to_s)}"
       end
     end
