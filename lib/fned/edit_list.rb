@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'tempfile'
 
-module RenameEdit
+module Fned
   class EditList
     class InvalidLine < StandardError
       attr_reader :line

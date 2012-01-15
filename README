@@ -1,12 +1,12 @@
-rename edit
-===========
+fned: filename edit
+===================
 
-Rename edit allows to use your favorite $EDITOR to change filenames.
+fned allows you to use your favorite $EDITOR to edit filenames.
 
 .Example
 ----
     % touch foo.txt bar.txt
-    % rename-edit -v *
+    % fned -v *
 $EDITOR starts with:
     # ./
     0 bar.txt

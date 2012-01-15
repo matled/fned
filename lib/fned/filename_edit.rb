@@ -1,10 +1,10 @@
 require 'pathname'
-require 'rename_edit/edit_list'
-require 'rename_edit/rename'
-require 'rename_edit/version'
+require 'fned/edit_list'
+require 'fned/rename'
+require 'fned/version'
 
-module RenameEdit
-  class RenameEdit
+module Fned
+  class FilenameEdit
     def self.main(*args)
       # Filenames may be in any encoding, i.e. have an invalid encoding if
       # the default encoding is not binary.  Therefore ensure that every
@@ -43,7 +43,7 @@ module RenameEdit
         return false
       end
 
-      RenameEdit.new(args, options).run
+      self.new(args, options).run
     end
 
     def initialize(paths, options = {})

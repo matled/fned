@@ -1,4 +1,4 @@
-module RenameEdit
+module Fned
   class Rename
     def initialize(options = {})
       @options = {
