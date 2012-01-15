@@ -1,16 +1,14 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
- 
-require 'fned/version'
 
 Gem::Specification.new do |s|
   s.name = "fned"
-  s.version = Fned::VERSION
+  s.version = File.read("VERSION")
   s.author = "Matthias Lederhofer"
   s.email = "matled@gmx.net"
   s.homepage = "http://github.com/matled/fned/"
-  s.summary = "rename files with your favorite editor"
-  s.description = File.read("README")
+  s.summary = "filename edit"
+  s.description = "fned allows you to use your favorite $EDITOR to edit filenames"
   s.executable = "fned"
   s.extra_rdoc_files = %w(README)
   s.files = %w(
