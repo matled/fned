@@ -29,6 +29,10 @@ module Fned
         parser.on("-r", "--recursive", "rename files in all subdirectories") do |v|
           options[:recursive] = true
         end
+
+        parser.on("-sSEPARATOR", "--separator=SEPARATOR", "separator between line number and filename") do |v|
+          options[:separator] = v
+        end
       end
 
       begin
@@ -105,7 +109,7 @@ module Fned
         dir = path.dirname
       end
 
-      items_new = EditList.new.edit(items, comments)
+      items_new = EditList.new(@options).edit(items, comments)
 
       items_new.map.with_index do |path, index|
         # TODO: Pathname#dirname + path breaks if path contains ..
