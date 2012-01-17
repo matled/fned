@@ -16,7 +16,13 @@ bump:
 lib/fned/version.rb: VERSION
 	printf 'module Fned\n  VERSION = "%s"\nend\n' $(shell cat VERSION) > $@
 
+fned.1: README
+	ronn --pipe --roff $< > $@
+
+README.html: README
+	ronn --pipe --html $< > $@
+
 clean:
-	rm -f fned-*.gem
+	rm -f fned-*.gem fned.1 README.html
 
 .PHONY: gem install bump clean
