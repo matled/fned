@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.summary = "filename edit"
   s.description = "fned allows you to use your favorite $EDITOR to edit filenames"
   s.executable = "fned"
-  s.extra_rdoc_files = %w(README)
   s.files = %w(
     COPYING
     README
