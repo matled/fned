@@ -1,6 +1,3 @@
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
-
 Gem::Specification.new do |s|
   s.name = "fned"
   s.version = File.read("VERSION")
