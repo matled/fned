@@ -77,6 +77,8 @@ module Fned
         @paths = @paths.map { |path| walk(path) }.flatten
       end
 
+      @paths.uniq!
+
       @errors = []
     end
 
