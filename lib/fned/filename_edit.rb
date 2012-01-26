@@ -74,14 +74,22 @@ module Fned
       }.merge(options)
 
       if @options[:recursive]
-        @paths = @paths.map { |path| walk(path) }.flatten
+        @paths = @paths.map { |path| [path] + walk(path) }.flatten
       end
 
+      # Ensure all paths are in binary encoding, otherwise comparison
+      # wont work after reading the files back from the file.
+      @paths.map! { |path| Pathname.new(path.to_s.force_encoding("binary")) }
+      # Don't display the same path multiple times.
       @paths.uniq!
+      # It is not possible to rename `.' and `..'.
+      @paths.reject! { |path| %w(. ..).include?(path.basename.to_s) }
 
       @errors = []
     end
 
+    # Recursively walk through path and return path of all entries.
+    # Does not include path itself.
     def walk(path)
       # TODO: descend into symlinked directories?
       # TODO: handle errors (ENOENT, ENOTDIR, ELOOP, EACCESS)
@@ -100,9 +108,6 @@ module Fned
       end
 
       result = []
-      unless %w(. ..).include?(path.basename.to_s)
-        result << path
-      end
       result += entries
       result += entries.map do |entry|
         if entry.lstat.directory?
