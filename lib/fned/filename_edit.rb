@@ -25,11 +25,7 @@ module Fned
       # Filenames may be in any encoding, i.e. have an invalid encoding if
       # the default encoding is not binary.  Therefore ensure that every
       # argument is in binary encoding.
-      args = args.map do |str|
-        str = str.dup
-        str.force_encoding "binary"
-        str
-      end
+      args = args.map { |str| str.dup.force_encoding "binary" }
 
       options = {}
 
