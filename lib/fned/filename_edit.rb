@@ -63,7 +63,7 @@ module Fned
     end
 
     def initialize(paths, options = {})
-      @paths = paths.map { |file| Pathname.new(file) }
+      @paths = paths.map { |path| Pathname.new(path) }
       @options = {
         :verbose => false,
         :recursive => false,
@@ -91,15 +91,21 @@ module Fned
       # TODO: handle errors (ENOENT, ENOTDIR, ELOOP, EACCESS)
       return [path] unless path.lstat.directory?
 
-      entries = path.entries.reject { |entry| %w(. ..).include?(entry.to_s) }
-      entries.map! do |entry|
+      entries = path.entries
+      .map do |entry|
+        entry.to_s.force_encoding "binary"
+      end
+      .reject do |entry|
+        %w(. ..).include?(entry)
+      end
+      .map do |entry|
         if (path + entry).lstat.directory?
           path + "#{entry}/"
         else
           path + entry
         end
       end
-      entries.sort_by! do |entry|
+      .sort_by do |entry|
         [entry.lstat.directory? ? 0 : 1, entry.basename]
       end
 
