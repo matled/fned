@@ -14,6 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with fned.  If not, see <http://www.gnu.org/licenses/>.
+require 'optparse'
 require 'pathname'
 require 'fned/edit_list'
 require 'fned/rename'
