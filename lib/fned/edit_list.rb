@@ -133,7 +133,7 @@ module Fned
 
         key, value = line.split(@options[:separator], 2)
         index = number_decode(key)
-        value = unescape(value)
+        value = unescape(value.to_s)
 
         if index.nil?
           raise InvalidLine.new("index #{key.inspect} contains invalid " +
@@ -144,6 +144,10 @@ module Fned
         end
         if @result[index]
           raise InvalidLine.new("index #{key.inspect} used multiple times",
+                                line_number)
+        end
+        if value.empty?
+          raise InvalidLine.new("value for #{key.inspect} empty",
                                 line_number)
         end
 
