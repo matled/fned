@@ -1,6 +1,8 @@
 VERSION = $(shell cat VERSION)
 FILES = $(shell git ls-files)
 
+-include Makefile.local
+
 gem: fned-$(VERSION).gem
 
 install: fned-$(VERSION).gem
